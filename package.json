@@ -4,8 +4,10 @@
   "description": "Le bot",
   "main": "dist/index.js",
   "scripts": {
+    "dev": "tsc && node ./dist/index.js",
     "compile": "tsc",
     "watch": "tsc --watch",
+    "lint": "eslint src/**",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +26,7 @@
   "homepage": "https://github.com/isaac-mok/lebot#readme",
   "devDependencies": {
     "@tsconfig/node16-strictest-esm": "^1.0.1",
+    "@types/omit-deep-lodash": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "eslint": "^8.14.0",
@@ -35,6 +38,9 @@
     "@discordjs/rest": "^0.4.1",
     "discord-api-types": "^0.32.0",
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "mongodb": "^4.5.0",
+    "node-graceful-shutdown": "^1.1.2",
+    "omit-deep-lodash": "^1.1.6"
   }
 }

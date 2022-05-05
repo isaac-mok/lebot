@@ -1,6 +1,6 @@
 import { REST } from '@discordjs/rest';
 import { APIApplicationCommandOption, RESTPostAPIApplicationCommandsJSONBody, Routes } from 'discord-api-types/v9';
-import { TOKEN, APP_ID } from './setup';
+import { DISCORD_TOKEN, APP_ID } from './setup';
 
 const snipeOptions: APIApplicationCommandOption[] = [
   {
@@ -63,7 +63,7 @@ const commands: RESTPostAPIApplicationCommandsJSONBody[] = [
   },
 ];
 
-const rest = new REST({ version: '9' }).setToken(TOKEN);
+const rest = new REST({ version: '9' }).setToken(DISCORD_TOKEN);
 
 (async () => {
   try {
