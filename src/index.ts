@@ -1,7 +1,9 @@
 import { onShutdown } from 'node-graceful-shutdown';
 import { Client, Intents } from 'discord.js';
-import { client as dbClient, messageCreate } from './mongodb';
+import { client as dbClient } from './mongodb';
 import { DISCORD_TOKEN } from './setup';
+import saveMessageCreate from './handlers/saveMessageCreate';
+import saveMessageDelete from './handlers/saveMessageDelete';
 
 onShutdown(async () => {
   dbClient.close();
@@ -12,6 +14,10 @@ const client = new Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
   ],
+  partials: [
+    'MESSAGE',
+    'USER',
+  ],
 });
 
 client.once('ready', () => {
@@ -19,7 +25,29 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', async (message) => {
-  messageCreate.insertOne(JSON.parse(JSON.stringify(message)));
+  try {
+    await saveMessageCreate(message);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+client.on('messageDelete', async (message) => {
+  if (message.embeds.length && !message.content) return; // Content is null or embed is deleted.
+
+  if (message.partial) {
+    try {
+      const fullMessage = await message.fetch();
+
+      saveMessageDelete(fullMessage);
+    } catch (err) {
+      console.error(err);
+    }
+
+    return;
+  }
+
+  saveMessageDelete(message);
 });
 
 client.login(DISCORD_TOKEN);

@@ -11,4 +11,6 @@ client.connect((err) => {
 
 export default client;
 
+// Collections
 export const messageCreate = client.db(DB_DATABASE).collection('messageCreate');
+export const messageDelete = client.db(DB_DATABASE).collection('messageDelete');
