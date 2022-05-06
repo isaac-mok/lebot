@@ -26,7 +26,6 @@
   "homepage": "https://github.com/isaac-mok/lebot#readme",
   "devDependencies": {
     "@tsconfig/node16-strictest-esm": "^1.0.1",
-    "@types/omit-deep-lodash": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "eslint": "^8.14.0",
@@ -40,7 +39,6 @@
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
     "mongodb": "^4.5.0",
-    "node-graceful-shutdown": "^1.1.2",
-    "omit-deep-lodash": "^1.1.6"
+    "node-graceful-shutdown": "^1.1.2"
   }
 }
